@@ -85,7 +85,7 @@ class NameGenerator:
         }
 
 
-def generate_email(school_domain='MIT.EDU'):
+def generate_email(school_domain='gmail.com'):  # ← PAKE DOMAIN INDONESIA!
     """
     生成随机学校邮箱
     
