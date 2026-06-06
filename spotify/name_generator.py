@@ -1,9 +1,10 @@
-"""随机名字生成器"""
+"""随机名字生成器 - ZAMZZZ EDITION (FORCED GMAIL)"""
 import random
+import string
 
 
 class NameGenerator:
-    """英文名字生成器"""
+    """Indonesian Name Generator"""
     
     ROOTS = {
         'prefixes': ['Al', 'Bri', 'Car', 'Dan', 'El', 'Fer', 'Gar', 'Har', 'Jes', 'Kar', 
@@ -13,8 +14,8 @@ class NameGenerator:
         'suffixes': ['ton', 'son', 'man', 'ley', 'field', 'ford', 'wood', 'stone', 'worth', 'berg',
                     'stein', 'bach', 'heim', 'gard', 'land', 'wick', 'shire', 'dale', 'brook', 'ridge'],
         'name_roots': ['Budi', 'Agus', 'Siti', 'Dewi', 'Rudi', 'Ani', 'Eko', 
-               'Sri', 'Joko', 'Tuti', 'Hendra', 'Rina', 'Andi', 'Nina',
-               'Bambang', 'Yanti', 'Ahmad', 'Fatimah', 'Rizki', 'Wulan'],
+                      'Sri', 'Joko', 'Tuti', 'Hendra', 'Rina', 'Andi', 'Nina',
+                      'Bambang', 'Yanti', 'Ahmad', 'Fatimah', 'Rizki', 'Wulan'],
         'name_endings': ['a', 'e', 'i', 'o', 'y', 'ie', 'ey', 'an', 'en', 'in', 
                         'on', 'er', 'ar', 'or', 'el', 'al', 'iel', 'ael', 'ine', 'lyn']
     }
@@ -36,7 +37,6 @@ class NameGenerator:
     
     @classmethod
     def _generate_component(cls, pattern):
-        """根据模式生成名字组件"""
         components = []
         for part in pattern:
             if part == 'prefix':
@@ -62,17 +62,10 @@ class NameGenerator:
     
     @classmethod
     def _format_name(cls, name):
-        """格式化名字（首字母大写）"""
         return name.capitalize()
     
     @classmethod
     def generate(cls):
-        """
-        生成随机英文名字
-        
-        Returns:
-            dict: 包含 first_name, last_name, full_name
-        """
         first_name_pattern = random.choice(cls.PATTERNS['first_name'])
         last_name_pattern = random.choice(cls.PATTERNS['last_name'])
         
@@ -86,30 +79,20 @@ class NameGenerator:
         }
 
 
-def generate_email(school_domain='gmail.com'):  # ← PAKE DOMAIN INDONESIA!
+def generate_email(school_domain=None):  # ← PARAMETER DIABAIKIN GOBLOK!
     """
-    生成随机学校邮箱
-    
-    Args:
-        school_domain: 学校域名
-    
-    Returns:
-        str: 邮箱地址
+    Generate random email - FORCED to use Gmail ONLY!
+    Parameter school_domain DIABAIKAN!
     """
-    chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-    username = ''.join(random.choice(chars) for _ in range(8))
-    return f"{username}@{school_domain}"
+    # Generate username random (huruf kecil + angka)
+    username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+    
+    # Cuma pake GMAIL! GAK BISA YANG LAIN!
+    return f"{username}@gmail.com"
 
 
 def generate_birth_date():
-    """
-    生成随机生日（2000-2005年）
-    
-    Returns:
-        str: YYYY-MM-DD 格式的日期
-    """
     year = 2000 + random.randint(0, 5)
     month = str(random.randint(1, 12)).zfill(2)
     day = str(random.randint(1, 28)).zfill(2)
     return f"{year}-{month}-{day}"
-
