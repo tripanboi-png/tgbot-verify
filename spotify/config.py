@@ -5,133 +5,71 @@ PROGRAM_ID = '67c8c14f5f17a83b745e3f82'
 SHEERID_BASE_URL = 'https://services.sheerid.com'
 MY_SHEERID_URL = 'https://my.sheerid.com'
 
-# 文件大小限制
-MAX_FILE_SIZE = 1 * 1024 * 1024  # 1MB
+MAX_FILE_SIZE = 1 * 1024 * 1024
 
-# 学校配置 - Pennsylvania State University 多校区
+# 学校配置 - UNIVERSITAS INDONESIA
 SCHOOLS = {
-    '2565': {
-        'id': 2565,
-        'idExtended': '2565',
-        'name': 'Pennsylvania State University-Main Campus',
-        'city': 'University Park',
-        'state': 'PA',
-        'country': 'US',
+    '349653': {
+        'id': 349653,
+        'idExtended': '349653',
+        'name': 'Universitas Indonesia',
+        'city': 'Depok',
+        'state': 'Jawa Barat',
+        'country': 'ID',
         'type': 'UNIVERSITY',
-        'domain': 'PSU.EDU',
-        'latitude': 40.798214,
-        'longitude': -77.85991
+        'domain': 'ui.ac.id',
+        'latitude': -6.362764,
+        'longitude': 106.82705
     },
-    '651379': {
-        'id': 651379,
-        'idExtended': '651379',
-        'name': 'Pennsylvania State University-World Campus',
-        'city': 'University Park',
-        'state': 'PA',
-        'country': 'US',
+    '349650': {
+        'id': 349650,
+        'idExtended': '349650',
+        'name': 'Universitas Gadjah Mada',
+        'city': 'Yogyakarta',
+        'state': 'DI Yogyakarta',
+        'country': 'ID',
         'type': 'UNIVERSITY',
-        'domain': 'PSU.EDU',
-        'latitude': 40.832783,
-        'longitude': -77.84159
+        'domain': 'ugm.ac.id',
+        'latitude': -7.7715616,
+        'longitude': 110.3777
     },
-    '8387': {
-        'id': 8387,
-        'idExtended': '8387',
-        'name': 'Pennsylvania State University-Penn State Harrisburg',
-        'city': 'Middletown',
-        'state': 'PA',
-        'country': 'US',
+    '349647': {
+        'id': 349647,
+        'idExtended': '349647',
+        'name': 'Universitas Brawijaya',
+        'city': 'Malang',
+        'state': 'Jawa Timur',
+        'country': 'ID',
         'type': 'UNIVERSITY',
-        'domain': 'PSU.EDU',
-        'latitude': 40.204082,
-        'longitude': -76.74168
+        'domain': 'ub.ac.id',
+        'latitude': -7.952465,
+        'longitude': 112.61368
     },
-    '8382': {
-        'id': 8382,
-        'idExtended': '8382',
-        'name': 'Pennsylvania State University-Penn State Altoona',
-        'city': 'Altoona',
-        'state': 'PA',
-        'country': 'US',
+    '353147': {
+        'id': 353147,
+        'idExtended': '353147',
+        'name': 'Universitas Telkom',
+        'city': 'Bandung',
+        'state': 'West Java',
+        'country': 'ID',
         'type': 'UNIVERSITY',
-        'domain': 'PSU.EDU',
-        'latitude': 40.54092,
-        'longitude': -78.40825
+        'domain': 'telkomuniversity.ac.id',
+        'latitude': -6.973007,
+        'longitude': 107.63168
     },
-    '8396': {
-        'id': 8396,
-        'idExtended': '8396',
-        'name': 'Pennsylvania State University-Penn State Berks',
-        'city': 'Reading',
-        'state': 'PA',
-        'country': 'US',
+    '353834': {
+        'id': 353834,
+        'idExtended': '353834',
+        'name': 'Universitas Tarumanagara',
+        'city': 'Jakarta Barat',
+        'state': 'DKI Jakarta',
+        'country': 'ID',
         'type': 'UNIVERSITY',
-        'domain': 'PSU.EDU',
-        'latitude': 40.359947,
-        'longitude': -75.97615
-    },
-    '8379': {
-        'id': 8379,
-        'idExtended': '8379',
-        'name': 'Pennsylvania State University-Penn State Brandywine',
-        'city': 'Media',
-        'state': 'PA',
-        'country': 'US',
-        'type': 'UNIVERSITY',
-        'domain': 'PSU.EDU',
-        'latitude': 39.92638,
-        'longitude': -75.44698
-    },
-    '2560': {
-        'id': 2560,
-        'idExtended': '2560',
-        'name': 'Pennsylvania State University-College of Medicine',
-        'city': 'Hershey',
-        'state': 'PA',
-        'country': 'US',
-        'type': 'UNIVERSITY',
-        'domain': 'PSU.EDU',
-        'latitude': 40.264244,
-        'longitude': -76.67408
-    },
-    '650600': {
-        'id': 650600,
-        'idExtended': '650600',
-        'name': 'Pennsylvania State University-Penn State Lehigh Valley',
-        'city': 'Center Valley',
-        'state': 'PA',
-        'country': 'US',
-        'type': 'UNIVERSITY',
-        'domain': 'PSU.EDU',
-        'latitude': 40.559208,
-        'longitude': -75.402504
-    },
-    '8388': {
-        'id': 8388,
-        'idExtended': '8388',
-        'name': 'Pennsylvania State University-Penn State Hazleton',
-        'city': 'Hazleton',
-        'state': 'PA',
-        'country': 'US',
-        'type': 'UNIVERSITY',
-        'domain': 'PSU.EDU',
-        'latitude': 40.98396,
-        'longitude': -76.03106
-    },
-    '8394': {
-        'id': 8394,
-        'idExtended': '8394',
-        'name': 'Pennsylvania State University-Penn State Worthington Scranton',
-        'city': 'Dunmore',
-        'state': 'PA',
-        'country': 'US',
-        'type': 'UNIVERSITY',
-        'domain': 'PSU.EDU',
-        'latitude': 41.440258,
-        'longitude': -75.62058
+        'domain': 'untar.ac.id',
+        'latitude': -6.169335,
+        'longitude': 106.78859
     }
 }
 
-# 默认学校
-DEFAULT_SCHOOL_ID = '2565'
+DEFAULT_SCHOOL_ID = '349653'
 
