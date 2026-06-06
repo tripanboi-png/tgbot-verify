@@ -1,72 +1,81 @@
-"""PNG 学生证生成模块 - Penn State LionPATH"""
+"""PNG 学生证生成模块 - ZAMZZZ EDITION (UNIVERSITAS INDONESIA)"""
 import random
 from datetime import datetime
 from io import BytesIO
 import base64
+import string
 
 
-def generate_psu_id():
-    """生成随机 PSU ID (9位数字)"""
-    return f"9{random.randint(10000000, 99999999)}"
+def generate_student_id():
+    """生成随机 NIM (Mahasiswa ID)"""
+    return f"{random.randint(10000000, 99999999)}"
 
 
-def generate_psu_email(first_name, last_name):
+def generate_email(first_name, last_name):
     """
-    生成 PSU 邮箱
-    格式: firstName.lastName + 3-4位数字 @psu.edu
+    Generate email - FORCED to use Gmail ONLY!
+    Parameter first_name, last_name DIABAIKAN!
     """
-    digit_count = random.choice([3, 4])
-    digits = ''.join([str(random.randint(0, 9)) for _ in range(digit_count)])
-    email = f"{first_name.lower()}.{last_name.lower()}{digits}@psu.edu"
-    return email
+    # Generate username random (huruf kecil + angka)
+    username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+    
+    # PAKSA PAKE GMAIL!
+    return f"{username}@gmail.com"
 
 
-def generate_html(first_name, last_name, school_id='2565'):
+# Aliase untuk kompatibilitas dengan code lama yang panggil generate_psu_email
+generate_psu_email = generate_email
+
+
+def generate_html(first_name, last_name, school_id='349653'):
     """
-    生成 Penn State LionPATH HTML
+    生成 Universitas Indonesia Student Portal HTML
 
     Args:
         first_name: 名字
         last_name: 姓氏
-        school_id: 学校 ID
+        school_id: 学校 ID (default: UI)
 
     Returns:
         str: HTML 内容
     """
-    psu_id = generate_psu_id()
+    student_id = generate_student_id()
     name = f"{first_name} {last_name}"
-    date = datetime.now().strftime('%m/%d/%Y, %I:%M:%S %p')
+    date = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
 
-    # 随机选择专业
+    # Daftar prodi Indonesia
     majors = [
-        'Computer Science (BS)',
-        'Software Engineering (BS)',
-        'Information Sciences and Technology (BS)',
-        'Data Science (BS)',
-        'Electrical Engineering (BS)',
-        'Mechanical Engineering (BS)',
-        'Business Administration (BS)',
-        'Psychology (BA)'
+        'Teknik Informatika (S1)',
+        'Sistem Informasi (S1)',
+        'Teknik Komputer (S1)',
+        'Manajemen Informatika (D3)',
+        'Ilmu Komputer (S1)',
+        'Teknik Elektro (S1)',
+        'Bisnis Digital (S1)'
     ]
     major = random.choice(majors)
+    
+    # Daftar fakultas
+    faculties = ['Fakultas Ilmu Komputer', 'Fakultas Teknik', 'Fakultas Ekonomi dan Bisnis']
+    faculty = random.choice(faculties)
 
     html = f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LionPATH - Student Home</title>
+    <title>SIKADU - Portal Mahasiswa</title>
     <style>
         :root {{
-            --psu-blue: #1E407C; /* Penn State Nittany Navy */
-            --psu-light-blue: #96BEE6;
+            --ui-red: #FF6600;
+            --ui-dark: #800000;
             --bg-gray: #f4f4f4;
             --text-color: #333;
         }}
 
         body {{
-            font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            background-color: #e0e0e0; /* 浏览器背景 */
+            font-family: "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+            background-color: #e0e0e0;
             margin: 0;
             padding: 20px;
             color: var(--text-color);
@@ -74,7 +83,6 @@ def generate_html(first_name, last_name, school_id='2565'):
             justify-content: center;
         }}
 
-        /* 模拟浏览器窗口 */
         .viewport {{
             width: 100%;
             max-width: 1100px;
@@ -85,9 +93,8 @@ def generate_html(first_name, last_name, school_id='2565'):
             flex-direction: column;
         }}
 
-        /* 顶部导航栏 LionPATH */
         .header {{
-            background-color: var(--psu-blue);
+            background-color: var(--ui-red);
             color: white;
             padding: 0 20px;
             height: 60px;
@@ -102,10 +109,9 @@ def generate_html(first_name, last_name, school_id='2565'):
             gap: 15px;
         }}
 
-        /* PSU Logo 模拟 */
-        .psu-logo {{
+        .uni-logo {{
             font-family: "Georgia", serif;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             letter-spacing: 1px;
             border-right: 1px solid rgba(255,255,255,0.3);
@@ -113,7 +119,7 @@ def generate_html(first_name, last_name, school_id='2565'):
         }}
 
         .system-name {{
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 300;
         }}
 
@@ -134,9 +140,8 @@ def generate_html(first_name, last_name, school_id='2565'):
             gap: 20px;
         }}
         .nav-item {{ cursor: pointer; }}
-        .nav-item.active {{ color: var(--psu-blue); font-weight: bold; border-bottom: 2px solid var(--psu-blue); padding-bottom: 8px; }}
+        .nav-item.active {{ color: var(--ui-red); font-weight: bold; border-bottom: 2px solid var(--ui-red); padding-bottom: 8px; }}
 
-        /* 主内容区 */
         .content {{
             padding: 30px;
             flex: 1;
@@ -153,7 +158,7 @@ def generate_html(first_name, last_name, school_id='2565'):
 
         .page-title {{
             font-size: 24px;
-            color: var(--psu-blue);
+            color: var(--ui-red);
             margin: 0;
         }}
 
@@ -167,7 +172,6 @@ def generate_html(first_name, last_name, school_id='2565'):
             font-weight: bold;
         }}
 
-        /* 学生信息卡片 */
         .student-card {{
             background: #fcfcfc;
             border: 1px solid #e0e0e0;
@@ -185,7 +189,6 @@ def generate_html(first_name, last_name, school_id='2565'):
             padding: 4px 8px; border-radius: 4px; font-weight: bold; border: 1px solid #b2f5ea;
         }}
 
-        /* 课程表 */
         .schedule-table {{
             width: 100%;
             border-collapse: collapse;
@@ -205,10 +208,9 @@ def generate_html(first_name, last_name, school_id='2565'):
             border-bottom: 1px solid #eee;
         }}
 
-        .course-code {{ font-weight: bold; color: var(--psu-blue); }}
+        .course-code {{ font-weight: bold; color: var(--ui-red); }}
         .course-title {{ font-weight: 500; }}
 
-        /* 打印适配 */
         @media print {{
             body {{ background: white; padding: 0; }}
             .viewport {{ box-shadow: none; max-width: 100%; min-height: auto; }}
@@ -222,113 +224,113 @@ def generate_html(first_name, last_name, school_id='2565'):
 <div class="viewport">
     <div class="header">
         <div class="brand">
-            <div class="psu-logo">PennState</div>
-            <div class="system-name">LionPATH</div>
+            <div class="uni-logo">UNIVERSITAS INDONESIA</div>
+            <div class="system-name">SIKADU - Portal Mahasiswa</div>
         </div>
         <div class="user-menu">
-            <span>Welcome, <strong>{name}</strong></span>
+            <span>Selamat Datang, <strong>{name}</strong></span>
             <span>|</span>
-            <span>Sign Out</span>
+            <span>Keluar</span>
         </div>
     </div>
 
     <div class="nav-bar">
-        <div class="nav-item">Student Home</div>
-        <div class="nav-item active">My Class Schedule</div>
-        <div class="nav-item">Academics</div>
-        <div class="nav-item">Finances</div>
-        <div class="nav-item">Campus Life</div>
+        <div class="nav-item">Beranda</div>
+        <div class="nav-item active">Jadwal Kuliah</div>
+        <div class="nav-item">Akademik</div>
+        <div class="nav-item">Keuangan</div>
+        <div class="nav-item">Kemahasiswaan</div>
     </div>
 
     <div class="content">
         <div class="page-header">
-            <h1 class="page-title">My Class Schedule</h1>
+            <h1 class="page-title">Jadwal Kuliah Semester Ganjil 2025/2026</h1>
             <div class="term-selector">
-                Term: <strong>Fall 2025</strong> (Aug 25 - Dec 12)
+                Semester: <strong>Ganjil 2025/2026</strong> (Agustus - Desember)
             </div>
         </div>
 
         <div class="student-card">
             <div>
-                <div class="info-label">Student Name</div>
+                <div class="info-label">Nama Mahasiswa</div>
                 <div class="info-val">{name}</div>
             </div>
             <div>
-                <div class="info-label">PSU ID</div>
-                <div class="info-val">{psu_id}</div>
+                <div class="info-label">NIM</div>
+                <div class="info-val">{student_id}</div>
             </div>
             <div>
-                <div class="info-label">Academic Program</div>
+                <div class="info-label">Program Studi</div>
                 <div class="info-val">{major}</div>
             </div>
             <div>
-                <div class="info-label">Enrollment Status</div>
-                <div class="status-badge">✅ Enrolled</div>
+                <div class="info-label">Fakultas</div>
+                <div class="info-val">{faculty}</div>
             </div>
         </div>
 
         <div style="margin-bottom: 10px; font-size: 12px; color: #666; text-align: right;">
-            Data retrieved: <span>{date}</span>
+            Data diambil: <span>{date}</span>
         </div>
 
         <table class="schedule-table">
             <thead>
                 <tr>
-                    <th width="10%">Class Nbr</th>
-                    <th width="15%">Course</th>
-                    <th width="35%">Title</th>
-                    <th width="20%">Days & Times</th>
-                    <th width="10%">Room</th>
-                    <th width="10%">Units</th>
+                    <th width="10%">Kode</th>
+                    <th width="15%">Mata Kuliah</th>
+                    <th width="35%">Nama Mata Kuliah</th>
+                    <th width="20%">Hari & Jam</th>
+                    <th width="10%">Ruangan</th>
+                    <th width="10%">SKS</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>14920</td>
-                    <td class="course-code">CMPSC 465</td>
-                    <td class="course-title">Data Structures and Algorithms</td>
-                    <td>MoWeFr 10:10AM - 11:00AM</td>
-                    <td>Willard 062</td>
-                    <td>3.00</td>
+                    <td>CSIK6023</td>
+                    <td class="course-code">Algoritma dan Pemrograman</td>
+                    <td class="course-title">Dasar-dasar Pemrograman</td>
+                    <td>Senin 08:00 - 10:30</td>
+                    <td>Ruang 301</td>
+                    <td>3</td>
                 </tr>
                 <tr>
-                    <td>18233</td>
-                    <td class="course-code">MATH 230</td>
-                    <td class="course-title">Calculus and Vector Analysis</td>
-                    <td>TuTh 1:35PM - 2:50PM</td>
-                    <td>Thomas 102</td>
-                    <td>4.00</td>
+                    <td>CSIK6045</td>
+                    <td class="course-code">Struktur Data</td>
+                    <td class="course-title">Pemrograman Lanjut</td>
+                    <td>Selasa 10:00 - 12:30</td>
+                    <td>Lab Komputer A</td>
+                    <td>3</td>
                 </tr>
                 <tr>
-                    <td>20491</td>
-                    <td class="course-code">CMPSC 473</td>
-                    <td class="course-title">Operating Systems Design</td>
-                    <td>MoWe 2:30PM - 3:45PM</td>
-                    <td>Westgate E201</td>
-                    <td>3.00</td>
+                    <td>CSIK6012</td>
+                    <td class="course-code">Basis Data</td>
+                    <td class="course-title">Sistem Manajemen Basis Data</td>
+                    <td>Rabu 13:00 - 15:30</td>
+                    <td>Ruang 205</td>
+                    <td>3</td>
                 </tr>
                 <tr>
-                    <td>11029</td>
-                    <td class="course-code">ENGL 202C</td>
-                    <td class="course-title">Technical Writing</td>
-                    <td>Fr 1:25PM - 2:15PM</td>
-                    <td>Boucke 304</td>
-                    <td>3.00</td>
+                    <td>CSIK6078</td>
+                    <td class="course-code">Pemrograman Web</td>
+                    <td class="course-title">Pengembangan Aplikasi Web</td>
+                    <td>Kamis 08:00 - 10:30</td>
+                    <td>Lab Web</td>
+                    <td>3</td>
                 </tr>
                 <tr>
-                    <td>15502</td>
-                    <td class="course-code">STAT 318</td>
-                    <td class="course-title">Elementary Probability</td>
-                    <td>TuTh 9:05AM - 10:20AM</td>
-                    <td>Osmond 112</td>
-                    <td>3.00</td>
+                    <td>CSIK6090</td>
+                    <td class="course-code">Rekayasa Perangkat Lunak</td>
+                    <td class="course-title">Metodologi Pengembangan Sistem</td>
+                    <td>Jumat 13:00 - 15:30</td>
+                    <td>Ruang 102</td>
+                    <td>3</td>
                 </tr>
             </tbody>
         </table>
 
         <div style="margin-top: 50px; border-top: 1px solid #ddd; padding-top: 10px; font-size: 11px; color: #888; text-align: center;">
-            &copy; 2025 The Pennsylvania State University. All rights reserved.<br>
-            LionPATH is the student information system for Penn State.
+            &copy; 2025 Universitas Indonesia. Semua hak dilindungi.<br>
+            SIKADU - Sistem Informasi Kampus Terpadu
         </div>
     </div>
 </div>
@@ -340,14 +342,14 @@ def generate_html(first_name, last_name, school_id='2565'):
     return html
 
 
-def generate_image(first_name, last_name, school_id='2565'):
+def generate_image(first_name, last_name, school_id='349653'):
     """
-    生成 Penn State LionPATH 截图 PNG
+    生成 Universitas Indonesia SIKADU screenshot PNG
 
     Args:
         first_name: 名字
         last_name: 姓氏
-        school_id: 学校 ID
+        school_id: 学校 ID (default: UI)
 
     Returns:
         bytes: PNG 图片数据
@@ -358,12 +360,12 @@ def generate_image(first_name, last_name, school_id='2565'):
         # 生成 HTML
         html_content = generate_html(first_name, last_name, school_id)
 
-        # 使用 Playwright 截图（替代 Selenium）
+        # 使用 Playwright 截图
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
             page = browser.new_page(viewport={'width': 1200, 'height': 900})
             page.set_content(html_content, wait_until='load')
-            page.wait_for_timeout(500)  # 等待样式加载
+            page.wait_for_timeout(500)
             screenshot_bytes = page.screenshot(type='png', full_page=True)
             browser.close()
 
@@ -380,28 +382,26 @@ if __name__ == '__main__':
     import sys
     import io
 
-    # 修复 Windows 控制台编码问题
     if sys.platform == 'win32':
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-    print("测试 PSU 图片生成...")
+    print("测试 SIKADU 图片生成 (Universitas Indonesia)...")
 
-    first_name = "John"
-    last_name = "Smith"
+    first_name = "Budi"
+    last_name = "Santoso"
 
-    print(f"姓名: {first_name} {last_name}")
-    print(f"PSU ID: {generate_psu_id()}")
-    print(f"邮箱: {generate_psu_email(first_name, last_name)}")
+    print(f"Nama: {first_name} {last_name}")
+    print(f"NIM: {generate_student_id()}")
+    print(f"Email: {generate_email(first_name, last_name)}")
 
     try:
         img_data = generate_image(first_name, last_name)
 
-        # 保存测试图片
-        with open('test_psu_card.png', 'wb') as f:
+        with open('test_ui_card.png', 'wb') as f:
             f.write(img_data)
 
-        print(f"✓ 图片生成成功! 大小: {len(img_data)} bytes")
-        print("✓ 已保存为 test_psu_card.png")
+        print(f"✓ Gambar berhasil! Size: {len(img_data)} bytes")
+        print(f"✓ Tersimpan sebagai test_ui_card.png")
 
     except Exception as e:
-        print(f"✗ 错误: {e}")
+        print(f"✗ Error: {e}")
