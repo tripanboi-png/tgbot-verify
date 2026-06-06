@@ -1,4 +1,4 @@
-"""SheerID 学生验证主程序"""
+"""SheerID 学生验证主程序 - ZAMZZZ EDITION (FORCED GMAIL)"""
 import re
 import random
 import logging
@@ -7,7 +7,7 @@ from typing import Dict, Optional, Tuple
 
 from . import config
 from .name_generator import NameGenerator, generate_email, generate_birth_date
-from .img_generator import generate_psu_email, generate_image
+from .img_generator import generate_image
 
 # 配置日志
 logging.basicConfig(
@@ -37,7 +37,6 @@ class SheerIDVerifier:
 
     @staticmethod
     def normalize_url(url: str) -> str:
-        """规范化 URL（保留原样）"""
         return url
 
     @staticmethod
@@ -50,7 +49,6 @@ class SheerIDVerifier:
     def _sheerid_request(
         self, method: str, url: str, body: Optional[Dict] = None
     ) -> Tuple[Dict, int]:
-        """发送 SheerID API 请求"""
         headers = {
             "Content-Type": "application/json",
         }
@@ -69,7 +67,6 @@ class SheerIDVerifier:
             raise
 
     def _upload_to_s3(self, upload_url: str, img_data: bytes) -> bool:
-        """上传 PNG 到 S3"""
         try:
             headers = {"Content-Type": "image/png"}
             response = self.http_client.put(
@@ -88,7 +85,6 @@ class SheerIDVerifier:
         birth_date: str = None,
         school_id: str = None,
     ) -> Dict:
-        """执行验证流程，移除状态轮询以减少耗时"""
         try:
             current_step = "initial"
 
@@ -100,8 +96,9 @@ class SheerIDVerifier:
             school_id = school_id or config.DEFAULT_SCHOOL_ID
             school = config.SCHOOLS[school_id]
 
+            # ← INI PERUBAHAN PENTING! PAKAI generate_email dari name_generator!
             if not email:
-                email = generate_psu_email(first_name, last_name)
+                email = generate_email()  # ← SEKARANG PAKSA PAKE GMAIL!
             if not birth_date:
                 birth_date = generate_birth_date()
 
@@ -194,7 +191,6 @@ class SheerIDVerifier:
             logger.info(f"✅ 文档提交完成: {step6_data.get('currentStep')}")
             final_status = step6_data
 
-            # 不做状态轮询，直接返回等待审核
             return {
                 "success": True,
                 "pending": True,
@@ -210,7 +206,6 @@ class SheerIDVerifier:
 
 
 def main():
-    """主函数 - 命令行界面"""
     import sys
 
     print("=" * 60)
