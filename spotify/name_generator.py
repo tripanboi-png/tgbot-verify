@@ -12,8 +12,9 @@ class NameGenerator:
                    'il', 'ol', 'am', 'em', 'im', 'om', 'ay', 'ey', 'oy', 'ian'],
         'suffixes': ['ton', 'son', 'man', 'ley', 'field', 'ford', 'wood', 'stone', 'worth', 'berg',
                     'stein', 'bach', 'heim', 'gard', 'land', 'wick', 'shire', 'dale', 'brook', 'ridge'],
-        'name_roots': ['Alex', 'Bern', 'Crist', 'Dav', 'Edw', 'Fred', 'Greg', 'Henr', 'Ivan', 'John',
-                      'Ken', 'Leon', 'Mich', 'Nick', 'Oliv', 'Paul', 'Rich', 'Step', 'Thom', 'Will'],
+        'name_roots': ['Budi', 'Agus', 'Siti', 'Dewi', 'Rudi', 'Ani', 'Eko', 
+               'Sri', 'Joko', 'Tuti', 'Hendra', 'Rina', 'Andi', 'Nina',
+               'Bambang', 'Yanti', 'Ahmad', 'Fatimah', 'Rizki', 'Wulan'],
         'name_endings': ['a', 'e', 'i', 'o', 'y', 'ie', 'ey', 'an', 'en', 'in', 
                         'on', 'er', 'ar', 'or', 'el', 'al', 'iel', 'ael', 'ine', 'lyn']
     }
