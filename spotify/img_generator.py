@@ -42,6 +42,7 @@ def generate_html(first_name, last_name, school_id='349653'):
     student_id = generate_student_id()
     name = f"{first_name} {last_name}"
     date = datetime.now().strftime('%d/%m/%Y, %H:%M:%S')
+    valid_until = datetime.now().strftime('%d %B %Y')
 
     # Daftar prodi Indonesia
     majors = [
@@ -328,7 +329,20 @@ def generate_html(first_name, last_name, school_id='349653'):
             </tbody>
         </table>
 
-        <div style="margin-top: 50px; border-top: 1px solid #ddd; padding-top: 10px; font-size: 11px; color: #888; text-align: center;">
+        <!-- TAMBAHAN KOTAK VALIDASI UNTUK SHEERID -->
+        <div style="margin-top: 30px; padding: 15px; font-size: 13px; color: #333; text-align: center; border: 2px solid #FF6600; background-color: #fef9f0; border-radius: 8px;">
+            <strong style="color: #FF6600;">✓ SURAT KETERANGAN AKTIF MAHASISWA</strong><br>
+            Diberitahukan bahwa mahasiswa di bawah ini:<br>
+            <strong>Nama:</strong> {name}<br>
+            <strong>NIM:</strong> {student_id}<br>
+            <strong>Program Studi:</strong> {major}<br>
+            <strong>Fakultas:</strong> {faculty}<br>
+            <strong>Status:</strong> <span style="color: green;">AKTIF (TERDAFTAR)</span><br>
+            <strong>Valid s/d:</strong> <span style="color: red;">{valid_until}</span><br>
+            <em>Dokumen ini dikeluarkan untuk keperluan verifikasi status mahasiswa.</em>
+        </div>
+
+        <div style="margin-top: 30px; border-top: 1px solid #ddd; padding-top: 10px; font-size: 11px; color: #888; text-align: center;">
             &copy; 2025 Universitas Indonesia. Semua hak dilindungi.<br>
             SIKADU - Sistem Informasi Kampus Terpadu
         </div>
